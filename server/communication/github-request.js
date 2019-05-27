@@ -10,7 +10,7 @@ class GithubRequest {
     buildOptions (language) {
         return  {
             host: 'api.github.com',
-            path: `/search/repositories?o=desc&q=${language}&s=stars&type=Repositories&page=1&per_page=2`,
+            path: `/search/repositories?o=desc&q=${language}&s=stars&type=Repositories&page=1&per_page=5`,
             port: 443,
             method: 'GET',
             headers: {
@@ -34,14 +34,7 @@ class GithubRequest {
                 response.on('end', () => {
         
                     const repos = JSON.parse(data)['items'];
-                    // console.log('repos.length')
-                    // console.log(repos)
-                    // console.log(repos.length)
                     return resolve(repos);
-                    // array.forEach(element => {
-                    //     console.log(element)
-                    //     console.log()
-                    // });
                 });
             })
         
@@ -52,9 +45,6 @@ class GithubRequest {
             req.end();
         })
     };
-    
-    
-    // const bangDosBanguers = `o=desc&q=elixir&s=stars&type=Repositories&page=1&per_page=5`; 
     
     clusterRepoByLang(fiveRepo, language) {
         let obj = {};
@@ -68,12 +58,12 @@ class GithubRequest {
             const response = [];
             this.languages.forEach(async (language) => {
                 let fiveRepo = await this.getFiveMajorReposFor(language);
-                fiveRepo = this.clusterRepoByLang(fiveRepo, language)
+                // fiveRepo = this.clusterRepoByLang(fiveRepo, language)
 
                 response.push(fiveRepo);
 
                 if (response.length === this.languages.length) {
-                    response.forEach(ele => console.log(ele))
+                    // response.forEach(ele => console.log(ele))
                     return resolve({response});
                 }
             });

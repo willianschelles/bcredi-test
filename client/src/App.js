@@ -1,75 +1,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
-
-  state = {
-    response: '',
-    post: '',
-    responseToPost: ''
-  };
-
-  componentDidMount() {
-
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.error(err));
-  }
-
-  callApi = async() => {
-    const response = await fetch('/api/search/highlights-repositories');
-    const body = await response.json();
-    console.log(body)
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('/api/world', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ post: this.state.post }),
-    });
-
-    const body = await response.text();
-    this.setState({ responseToPost: body });
-  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Qual Senóide? Willian the master
-          </p>
-          <a
-            className="Search Repositories"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h4 className="App-title">Buscar Repositórios em Destaque</h4>
+          <button><Link to="/repositories">Buscar Repositórios em Destaque</Link></button>
         </header>
-        <p>{this.state.response}</p>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <strong>Post to Server:</strong>
-          </p>
-          <input
-            type="text"
-            value={this.state.post}
-            onChange={e => this.setState({ post: e.target.value })}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        <p>{this.state.responseToPost}</p>
       </div>
     );
   }
