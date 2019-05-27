@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-
-  state = {
-    response: '',
-    post: '',
-    responseToPost: ''
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      response: []
+    }
+  }
+  // state = {
+  //   response: '',
+  //   post: '',
+  //   responseToPost: ''
+  // };
 
   componentDidMount() {
 
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => {
+        // console.log(typeof(JSON.parse(res.express).response))
+        // const response = JSON.parse(res.express).response
+        // const express = JSON.parse(res.express)
+        // console.log(JSON.parse(res.express).response)
+        console.log('res')
+        console.log(res)
+        this.setState({ response: res })
+        // this.setState({ response: express }) 
+      })
       .catch(err => console.error(err));
   }
 
   callApi = async() => {
     const response = await fetch('/api/search/highlights-repositories');
     const body = await response.json();
+    console.log('body')
+    console.log(typeof(body))
     console.log(body)
+
+    // const parsedResponse = JSON.parse(body.express);
     if (response.status !== 200) throw Error(body.message);
 
     return body;
@@ -39,40 +57,32 @@ class App extends Component {
     const body = await response.text();
     this.setState({ responseToPost: body });
   }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Qual Senóide? Willian the master
-          </p>
-          <a
-            className="Search Repositories"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <p>{this.state.response}</p>
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <strong>Post to Server:</strong>
-          </p>
-          <input
-            type="text"
-            value={this.state.post}
-            onChange={e => this.setState({ post: e.target.value })}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        <p>{this.state.responseToPost}</p>
-      </div>
-    );
+  
+  swap(json){
+    var ret = {};
+    for(var key in json){
+      ret[json[key]] = key;
+    }
+    return ret;
   }
+  
+  render() {
+    
+    if(this.state.response.length !== 0){
+      return (
+        <ul>
+          {this.state.response.map((lang, index) => 
+            <ul>
+              { lang[0].name }
+              { lang.map(repo => <li>{repo.full_name}</li>) }
+            </ul>
+            )}
+        </ul>
+      );
+    }
+    return <div></div>
+  }
+    // console.log(data)
 };
 
 export default App;
