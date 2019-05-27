@@ -9,24 +9,12 @@ class App extends Component {
       response: []
     }
   }
-  // state = {
-  //   response: '',
-  //   post: '',
-  //   responseToPost: ''
-  // };
 
   componentDidMount() {
 
     this.callApi()
       .then(res => {
-        // console.log(typeof(JSON.parse(res.express).response))
-        // const response = JSON.parse(res.express).response
-        // const express = JSON.parse(res.express)
-        // console.log(JSON.parse(res.express).response)
-        console.log('res')
-        console.log(res)
         this.setState({ response: res })
-        // this.setState({ response: express }) 
       })
       .catch(err => console.error(err));
   }
@@ -34,9 +22,6 @@ class App extends Component {
   callApi = async() => {
     const response = await fetch('/api/search/highlights-repositories');
     const body = await response.json();
-    console.log('body')
-    console.log(typeof(body))
-    console.log(body)
 
     // const parsedResponse = JSON.parse(body.express);
     if (response.status !== 200) throw Error(body.message);
@@ -58,23 +43,16 @@ class App extends Component {
     this.setState({ responseToPost: body });
   }
   
-  swap(json){
-    var ret = {};
-    for(var key in json){
-      ret[json[key]] = key;
-    }
-    return ret;
-  }
-  
   render() {
     
     if(this.state.response.length !== 0){
       return (
         <ul>
-          {this.state.response.map((lang, index) => 
+          {this.state.response.map((lang) => 
             <ul>
               { lang[0].name }
-              { lang.map(repo => <li>{repo.full_name}</li>) }
+              { lang.map(repo => <li key={repo.id}>{repo.full_name}</li>) }
+              <br></br>
             </ul>
             )}
         </ul>

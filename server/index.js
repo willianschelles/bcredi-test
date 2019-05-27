@@ -9,15 +9,12 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const languages = ['elixir', 'ruby', 'python', 'java'];
+const languages = ['elixir', 'ruby', 'python', 'java', 'closure'];
 
 const githubRequest = new GithubRequest(languages);
 
 app.get('/api/search/highlights-repositories', async (req, res) => {
     const result = await githubRequest.makeRequest();
-    console.log('result')
-    console.log(typeof(result))
-    console.log(result.response)
     res.send(result.response);
     // res.send({express: JSON.stringify(result)});
 });
