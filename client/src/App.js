@@ -1,66 +1,21 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      response: []
-    }
-  }
 
-  componentDidMount() {
-
-    this.callApi()
-      .then(res => {
-        this.setState({ response: res })
-      })
-      .catch(err => console.error(err));
-  }
-
-  callApi = async() => {
-    const response = await fetch('/api/search/highlights-repositories');
-    const body = await response.json();
-
-    // const parsedResponse = JSON.parse(body.express);
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('/api/world', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ post: this.state.post }),
-    });
-
-    const body = await response.text();
-    this.setState({ responseToPost: body });
-  }
-  
   render() {
-    
-    if(this.state.response.length !== 0){
-      return (
-        <ul>
-          {this.state.response.map((lang) => 
-            <ul>
-              { lang[0].name }
-              { lang.map(repo => <li key={repo.id}>{repo.full_name}</li>) }
-              <br></br>
-            </ul>
-            )}
-        </ul>
-      );
-    }
-    return <div></div>
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h4 className="App-title">Buscar Repositórios em Destaque</h4>
+          <button><Link to="/repositories">Buscar Repositórios em Destaque</Link></button>
+        </header>
+      </div>
+    );
   }
-    // console.log(data)
 };
 
 export default App;
