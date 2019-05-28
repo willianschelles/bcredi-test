@@ -64,7 +64,7 @@ class GithubRequest {
 
                 if (response.length === this.languages.length) {
                     // response.forEach(ele => console.log(ele))
-                    console.log(response)
+                    // console.log(response)
                     return resolve({response});
                 }
             });

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Repositories from './Repositories';
+import RepositoryDetail from './RepositoryDetail';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter,  Switch, Route } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ ReactDOM.render(
         <Switch>
             <Route path="/" exact={true} component={App} />
             <Route path="/repositories" component={Repositories} />
+            <Route path="/repository-detail/:id" component={RepositoryDetail} />
         </Switch>
     </BrowserRouter>
     , document.getElementById('root'));

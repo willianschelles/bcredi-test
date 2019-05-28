@@ -11,11 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const languages = ['elixir', 'ruby', 'python', 'java', 'JavaScript'];
 
-
 class StartApp {
   
-  
-  // const languages = ['elixir', 'ruby'];
   async start() {
     const githubRequest = new GithubRequest(languages);
     const database = new Database();
@@ -25,18 +22,16 @@ class StartApp {
         const result = await githubRequest.makeRequest();
         database.storeData(result.response);
         res.send(result.response);
-        // res.send({express: JSON.stringify(result)});
     });
     
-    app.post('/api/world', (req, res) => {
-        console.log(req.body);
-        res.send(
-          `I received your POST request. This is what you sent me: ${req.body.post}`,
-        );
+    app.get('/api/repository-detail', async (req, res) => {
+      const repositoryInfo = await database.getRepositoryInfo(req.query.id);
+      res.send(repositoryInfo);
     });
       
     app.listen(port, () => console.log(`Listening on port ${port}`));
   }
+
 }
 
 module.exports.StartApp = StartApp;
