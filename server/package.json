@@ -12,6 +12,7 @@
     "create-react-app": "^3.0.1",
     "express": "^4.17.0",
     "https": "^1.0.0",
+    "pg": "^7.11.0",
     "request": "^2.88.0"
   },
   "devDependencies": {
