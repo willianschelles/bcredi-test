@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Link, Router } from 'react-router-dom';
 
-class Repositories extends Component {
+class RepositoryDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,6 +12,8 @@ class Repositories extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
+    console.log(this.props.match.params)
 
     this.callApi()
       .then(res => {
@@ -21,7 +23,7 @@ class Repositories extends Component {
   }
 
   callApi = async() => {
-    const response = await fetch('/api/search/highlights-repositories');
+    const response = await fetch(`/api/repository-detail?id=${this.props.match.params.id}`);
     const body = await response.json();
 
     // const parsedResponse = JSON.parse(body.express);
@@ -55,8 +57,10 @@ class Repositories extends Component {
               { lang[0].name }
               { lang.map(repo => 
                 <li key={repo.id}>
-                    <Link to={`/repository-detail/${repo.id}`}>{repo.full_name}</Link>
+                    <Link to={`/repository-detail`}>{repo.full_name}</Link>
+                    {/* <Link to={`/api/repository-detail?id=${repo.id}`}>{repo.full_name}</Link> */}
                 </li>) }
+              {/* { lang.map(repo => <li key={repo.id}><a href={`/api/repository/detail?${repo.id}`}>{repo.full_name}</a></li>) } */}
               <br></br>
             </ul>
             )}
@@ -69,4 +73,4 @@ class Repositories extends Component {
     // console.log(data)
 };
 
-export default Repositories;
+export default RepositoryDetail;

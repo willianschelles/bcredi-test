@@ -45,7 +45,7 @@ class Database {
                     values: repo,
                   }
                 this.client.query(query)
-                            .then(result => console.log(`Inserted: ${query.values}`))
+                            .then(result => console.log(`Inserted`))
                             .catch(err => {return err})
             })
         });

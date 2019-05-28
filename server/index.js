@@ -28,6 +28,13 @@ class StartApp {
         // res.send({express: JSON.stringify(result)});
     });
     
+    app.get('/api/repository-detail', async (req, res) => {
+      console.log('req')
+      console.log(req.query.id)
+      // res.send(result.response);
+      // res.send({express: JSON.stringify(result)});
+    });
+  
     app.post('/api/world', (req, res) => {
         console.log(req.body);
         res.send(
