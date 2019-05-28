@@ -52,7 +52,7 @@ class Repositories extends Component {
         <ul>
           {this.state.response.map((lang) => 
             <ul>
-              { lang[0].name }
+              { lang[0].language }
               { lang.map(repo => 
                 <li key={repo.id}>
                     <Link to={`/repository-detail/${repo.id}`}>{repo.full_name}</Link>

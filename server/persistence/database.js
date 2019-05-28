@@ -62,11 +62,13 @@ class Database {
         const repositories = this.getRepositoriesByLang(data);
         await this.insertRepositoriesInDB(repositories);
         
-        
-        // console.log(data)
-        // const res = await client.query('SELECT $1::text as message', ['Hello world!'])
-        // console.log(res.rows[0].message) // Hello world!
-        // await this.client.end();
+    }
+
+    async getRepositoryInfo(repositoryId) {
+        return await this.client.query(`SELECT * FROM repositories WHERE id=${repositoryId}`)
+                        .then(res => {return res.rows})
+                        .catch(err => {return err});
+
     }
 
     async startDatabase () {
