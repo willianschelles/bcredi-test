@@ -66,7 +66,7 @@ class Database {
 
     async getRepositoryInfo(repositoryId) {
         return await this.client.query(`SELECT * FROM repositories WHERE id=${repositoryId}`)
-                        .then(res => {return res.rows})
+                        .then(res => {return res.rows[0]})
                         .catch(err => {return err});
 
     }
