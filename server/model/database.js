@@ -6,7 +6,6 @@ class Database {
         this.client = this.getClient();
     }
 
-
     getClient() {
         return new Client({
             user: 'willian',
