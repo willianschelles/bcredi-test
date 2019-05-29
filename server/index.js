@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const GithubRequest = require('./communication/github-request').GithubRequest;
-const Database = require('./persistence/database').Database;
+const Database = require('./model/database').Database;
 
 const app = express();
 const port = process.env.PORT || 5000;

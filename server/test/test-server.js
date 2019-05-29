@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const Server = require('../index');
 const request = require('request');
-const Database = require('../persistence/database').Database;
+const Database = require('../model/database').Database;
 
 
 const should = chai.should();
