@@ -4,18 +4,8 @@ class Database {
 
     constructor() {
         this.client = this.getClient();
-        this.pool = this.getPool();
     }
-    
-    getPool(){ 
-        return new Pool({
-            user: 'willian',
-            host: 'localhost',
-            database: 'bcredi',
-            password: 'bcredi',
-            port: 5432,
-        })
-    } 
+
 
     getClient() {
         return new Client({
@@ -25,6 +15,12 @@ class Database {
             password: 'bcredi',
             port: 5432,
         })
+    }
+
+    async tableHasRows(tableName) {
+        return await this.client.query(`SELECT EXISTS(select * from ${tableName}) as has_row`)
+                    .then(result => {return result.rows[0].has_row})
+                    .catch(err => {return err})
     }
 
     getRepositoriesByLang(data) {
@@ -45,7 +41,7 @@ class Database {
                     values: repo,
                   }
                 this.client.query(query)
-                            .then(result => console.log(`Inserted`))
+                            .then(result => {return})
                             .catch(err => {return err})
             })
         });

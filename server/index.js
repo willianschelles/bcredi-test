@@ -20,7 +20,9 @@ class StartApp {
     
     app.get('/api/search/highlights-repositories', async (req, res) => {
         const result = await githubRequest.makeRequest();
-        database.storeData(result.response);
+        
+        if (! await database.tableHasRows('repositories')) 
+          database.storeData(result.response);
         res.send(result.response);
     });
     
