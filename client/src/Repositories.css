@@ -88,8 +88,8 @@ ol > li:before {
     width: 50px;
 	height: 50px;
     padding: 13px;
-    color: #ffd954;
-    background: #af8f22;
+    color: #fbfbfd;
+    background: #556168;
     font-weight: bold;
     text-align: center;
 }

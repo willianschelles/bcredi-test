@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './RepositoryDetail.css';
+// import './RepositoryDetail.css';
 
 // import logo from './logo.svg';
 
@@ -29,24 +29,49 @@ class RepositoryDetail extends Component {
 
     _renderObject(){
         return Object.entries(this.state.response).map(([key, value], i) => {
+            if (key === 'url' ) {
+                return (
+                    <tr>
+                        <th scope="row">{key}</th>
+                            <td><a href={value}>{value}</a></td>
+                    </tr>
+                )
+            }
             return (
-                <li className="list-group-item list-group-item-dark">{key}: {value}</li>
+                <tr>
+                    <th scope="row">{key}</th>
+                        <td>{value}</td>
+                </tr>
             )
         })
+    }
+    getRepoName() {
+        return (
+            <a><b>{this.state.response["full_name"]}:</b></a>
+        )
     }
 
     render(){
         if(this.state.response.length !== 0){
             return(
-                <div>
-                    <ul className="list-group">
-                        {this._renderObject()}
-                    </ul>
+                <div className="container">
+                    Detalhes de {this.getRepoName()}
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Propriedade</th>
+                                <th scope="col">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this._renderObject()}
+                        </tbody>
+                    </table>
                 </div>
             )
         }
         return <div></div>    
-}
+    }
 };
 
 export default RepositoryDetail;
