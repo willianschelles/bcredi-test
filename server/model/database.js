@@ -25,7 +25,6 @@ class Database {
             port: 5432,
         })
     }
-    
     async tableHasRows(tableName) {
         return await this.client.query(`SELECT EXISTS(select * from ${tableName}) as has_row`)
                     .then(result => {return result.rows[0].has_row})

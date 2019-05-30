@@ -9,7 +9,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1"
   },
-  "proxys": "http://young-meadow-19089.herokuapp.com:5000/",
+  "proxy": "https://young-meadow-19089.herokuapp.com:5000/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
