@@ -15,7 +15,7 @@ class GithubRequest {
             method: 'GET',
             headers: {
                 'user-agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)',
-                'Authorization': 'Bearer 7c7e72e34ae97ede72455d79f06c060c3e64298e'
+                'Authorization': `Bearer ${process.env.GITHUB_TOKEN} `
             }
         };
     }
