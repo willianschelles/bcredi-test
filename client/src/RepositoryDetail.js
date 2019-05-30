@@ -15,7 +15,6 @@ class RepositoryDetail extends Component {
 
     this.callApi()
       .then(res => {
-          console.log(res)
         this.setState({ response: res })
       })
       .catch(err => console.error(err));
@@ -29,11 +28,9 @@ class RepositoryDetail extends Component {
     };
 
     _renderObject(){
-        console.log(this.state.response)
         return Object.entries(this.state.response).map(([key, value], i) => {
-            console.log(key, value)
             return (
-                <li class="list-group-item list-group-item-dark">{key}: {value}</li>
+                <li className="list-group-item list-group-item-dark">{key}: {value}</li>
             )
         })
     }
@@ -42,7 +39,7 @@ class RepositoryDetail extends Component {
         if(this.state.response.length !== 0){
             return(
                 <div>
-                    <ul class="list-group">
+                    <ul className="list-group">
                         {this._renderObject()}
                     </ul>
                 </div>

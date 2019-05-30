@@ -11,7 +11,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h4 className="App-title">Buscar Repositórios em Destaque</h4>
-          <button type="button" class="btn btn-info"><Link to="/repositories">Buscar</Link></button>
+          <button type="button" className="btn btn-info"><Link to="/repositories">Buscar</Link></button>
 
           {/* <button><Link to="/repositories">Buscar Repositórios em Destaque</Link></button> */}
         </header>

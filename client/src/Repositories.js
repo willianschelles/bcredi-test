@@ -51,7 +51,7 @@ class Repositories extends Component {
 
         <ul>
           {this.state.response.map((lang) => 
-            <ol class="betterList">
+            <ol className="betterList">
               { lang[0].language }
               { lang.map(repo => 
                 <li key={repo.id}>
