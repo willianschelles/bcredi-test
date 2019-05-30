@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Link, Router } from 'react-router-dom';
+import './Repositories.css';
+import { Link } from 'react-router-dom';
 
 class Repositories extends Component {
   constructor(props) {
@@ -51,14 +51,14 @@ class Repositories extends Component {
 
         <ul>
           {this.state.response.map((lang) => 
-            <ul>
+            <ol class="betterList">
               { lang[0].language }
               { lang.map(repo => 
                 <li key={repo.id}>
                     <Link to={`/repository-detail/${repo.id}`}>{repo.full_name}</Link>
                 </li>) }
               <br></br>
-            </ul>
+            </ol>
             )}
         </ul>
       );

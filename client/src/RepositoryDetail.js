@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './RepositoryDetail.css';
+
 // import logo from './logo.svg';
 
 class RepositoryDetail extends Component {
@@ -31,21 +33,18 @@ class RepositoryDetail extends Component {
         return Object.entries(this.state.response).map(([key, value], i) => {
             console.log(key, value)
             return (
-                <ul>
-                    <div key={key}>
-                        <li>{key}: {value} ;</li>
-                    </div>
-                </ul>
+                <li class="list-group-item list-group-item-dark">{key}: {value}</li>
             )
         })
     }
 
     render(){
         if(this.state.response.length !== 0){
-
             return(
                 <div>
-                    {this._renderObject()}
+                    <ul class="list-group">
+                        {this._renderObject()}
+                    </ul>
                 </div>
             )
         }
