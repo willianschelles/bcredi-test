@@ -6,6 +6,7 @@ import Repositories from './Repositories';
 import RepositoryDetail from './RepositoryDetail';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter,  Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
     <BrowserRouter>

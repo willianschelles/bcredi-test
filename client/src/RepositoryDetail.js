@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import './RepositoryDetail.css';
+
 // import logo from './logo.svg';
 
 class RepositoryDetail extends Component {
@@ -13,7 +15,6 @@ class RepositoryDetail extends Component {
 
     this.callApi()
       .then(res => {
-          console.log(res)
         this.setState({ response: res })
       })
       .catch(err => console.error(err));
@@ -27,30 +28,50 @@ class RepositoryDetail extends Component {
     };
 
     _renderObject(){
-        console.log(this.state.response)
         return Object.entries(this.state.response).map(([key, value], i) => {
-            console.log(key, value)
+            if (key === 'url' ) {
+                return (
+                    <tr>
+                        <th scope="row">{key}</th>
+                            <td><a href={value}>{value}</a></td>
+                    </tr>
+                )
+            }
             return (
-                <ul>
-                    <div key={key}>
-                        <li>{key}: {value} ;</li>
-                    </div>
-                </ul>
+                <tr>
+                    <th scope="row">{key}</th>
+                        <td>{value}</td>
+                </tr>
             )
         })
+    }
+    getRepoName() {
+        return (
+            <a><b>{this.state.response["full_name"]}:</b></a>
+        )
     }
 
     render(){
         if(this.state.response.length !== 0){
-
             return(
-                <div>
-                    {this._renderObject()}
+                <div className="container">
+                    Detalhes de {this.getRepoName()}
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Propriedade</th>
+                                <th scope="col">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this._renderObject()}
+                        </tbody>
+                    </table>
                 </div>
             )
         }
         return <div></div>    
-}
+    }
 };
 
 export default RepositoryDetail;
