@@ -6,17 +6,26 @@ class Database {
         this.client = this.getClient();
     }
 
+    // getClient() {
+    //     return new Client({
+    //         user: 'willian',
+    //         host:  'localhost',
+    //         database: 'bcredi',
+    //         password: 'bcredi',
+    //         port: 5432,
+    //     })
+    // }
+    // host: process.env.DATABASE_URL || 'ec2-54-197-232-203.compute-1.amazonaws.com',
 
     getClient() {
         return new Client({
-            user: 'willian',
-            host: 'localhost',
-            database: 'bcredi',
-            password: 'bcredi',
+            user: 'luirxvoivkkldr',
+            host: 'ec2-54-197-232-203.compute-1.amazonaws.com',
+            database: 'd2ikmlaibcnj3d',
+            password: 'e743de633ab544d686995966c596d8bed86112cbd8ef65cd58426647b53626f4',
             port: 5432,
         })
     }
-
     async tableHasRows(tableName) {
         return await this.client.query(`SELECT EXISTS(select * from ${tableName}) as has_row`)
                     .then(result => {return result.rows[0].has_row})

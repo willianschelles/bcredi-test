@@ -2,12 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const GithubRequest = require('./communication/github-request').GithubRequest;
 const Database = require('./model/database').Database;
-
+const path = require('path')
 const app = express();
 const port = process.env.PORT || 5000;
-
+console.log('teste')
+console.log('teste')
+console.log('teste')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+// })
+
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 const languages = ['elixir', 'ruby', 'python', 'java', 'JavaScript'];
 
