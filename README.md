@@ -34,4 +34,4 @@ On the *develop* branch:
 - Run *npm run server* on the server/ directory to set up only server application
 
 ###Link to the Heroku web application 
-- [https://young-meadow-19089.herokuapp.com/](https://github.com/pandao/editor.md "Heading link")
+- [https://young-meadow-19089.herokuapp.com/](https://young-meadow-19089.herokuapp.com/ "Heading link")
